@@ -1,5 +1,5 @@
 ## 概要
-一点更新・区間クエリを $O(log N)$ でできるやつ。
+一点更新・区間クエリを $O(\log{N})$ でできるやつ。
 
 ## コード
 ### 必須ライブラリ
@@ -136,7 +136,7 @@ public:
 
 ## 計算量
 - 構築： $O(N)$
-- `set`・`add`・`query`・`max_right`・`min_left`： $O(\log N)$ 
+- `set`・`add`・`query`・`max_right`・`min_left`： $O(\log{N})$ 
 - `get`： $O(1)$
 
 ## 使用例
