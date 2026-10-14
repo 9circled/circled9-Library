@@ -24,8 +24,6 @@ vector<pair<typename T::value_type, int>> RLE(T& A){
 
 `vector<pair<int, int>> R = RLE(A)` などで数列のランレングス圧縮をします。
 
-### 関数
-
 ## 計算量
 - 構築： $O(|S|)$ や $O(|A|)$
 
