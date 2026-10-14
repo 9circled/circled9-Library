@@ -140,4 +140,4 @@ public:
 - `get`： $O(1)$
 
 ## 使用例
-- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80044188)
+- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80044589)
