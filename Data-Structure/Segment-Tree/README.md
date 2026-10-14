@@ -14,11 +14,11 @@
 
 ### 関数
 以下は全て0-indexedです。
-- `set(i, x)`：$A\lbrack i\rbrack$ を $x$ にする
-- `add(i, x)`：$A\lbrack i\rbrack$ に $x$ を足す
-- `get(i)`：$A\lbrack i\rbrack$ を返す
+- `set(i, x)`： $A\lbrack i\rbrack$ を $x$ にする
+- `add(i, x)`： $A\lbrack i\rbrack$ に $x$ を足す
+- `get(i)`： $A\lbrack i\rbrack$ を返す
 - `query(l, r)`：区間 $\lbrack l, r\rparen$ に対する演算結果を返す
-- `max_right(l, check)`：$l$ を左端として区間 $\lbrack l,x\rparen$ が条件 $check$ を満たす最大の $x$ を返す
+- `max_right(l, check)`： $l$ を左端として区間 $\lbrack l,x\rparen$ が条件 $check$ を満たす最大の $x$ を返す
 - `min_left(r, check)`：$r$ を右端として区間 $\lbrack x, r\rparen$ が条件 $check$ を満たす最小の $x$ を返す
 
 ## 計算量
