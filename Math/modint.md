@@ -75,8 +75,8 @@ using mint2 = modint<1>;
 
 ## 計算量
 - 大体： $O(1)$
-- $x\div y$ ： $O(\log M)$
-- $x^t$ ： $O(\log t)$
+- $x\div y$ ： $O(\log{M})$
+- $x^t$ ： $O(\log{t})$
 
 ## 使用例
 - [ABC298 D - Writing a Numeral](https://atcoder.jp/contests/abc298/tasks/abc298_d) - [提出](https://atcoder.jp/contests/abc298/submissions/80045111)
