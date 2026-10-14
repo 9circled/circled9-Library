@@ -35,7 +35,7 @@ struct IntervalSet {
 		return len-bef;
 	}
 
-	long long remove(long long l, long long r){
+	long long erase(long long l, long long r){
 		long long bef = len;
 		if (l>r) return 0;
 		auto itr = s.lower_bound({l, -2e18});
@@ -92,7 +92,7 @@ struct IntervalSet {
 
 ### 関数
 - `insert(L, R)`：区間 $\lbrack L, R\rbrack$ を追加します。返り値は追加した合計の長さを返します。
-- `remove(L, R)`：区間 $\lbrack L, R\rbrack$ を削除します。返り値は削除した合計の長さを返します。
+- `erase(L, R)`：区間 $\lbrack L, R\rbrack$ を削除します。返り値は削除した合計の長さを返します。
 - `contain(x)`： $x$ が含まれているかを返します。
 - `contain(L, R)`：区間 $\lbrack L, R\rbrack$ が含まれているかを返します。
 - `length()`：追加された全区間の覆う長さの合計を返します。
@@ -100,10 +100,10 @@ struct IntervalSet {
 - `get()`：対応する区間のsetそのものを返します。
 
 ## 計算量
-- `insert`・`remove`：償却 $O(\log{N})$
+- `insert`・`erase`：償却 $O(\log{N})$
 - `contain`： $O(\log{N})$
 - `length`・`size`・`get`： $O(1)$
 
 ## 使用例
-- [ABC256 D - Union of Interval](https://atcoder.jp/contests/abc256/tasks/abc256_d) - [提出](https://atcoder.jp/contests/abc256/submissions/80046152)
-- [ABC435 E - Cover query](https://atcoder.jp/contests/abc435/tasks/abc435_e) - [提出](https://atcoder.jp/contests/abc435/submissions/80046385)
+- [ABC256 D - Union of Interval](https://atcoder.jp/contests/abc256/tasks/abc256_d) - [提出](https://atcoder.jp/contests/abc256/submissions/80046718)
+- [ABC435 E - Cover query](https://atcoder.jp/contests/abc435/tasks/abc435_e) - [提出](https://atcoder.jp/contests/abc435/submissions/80046726)
