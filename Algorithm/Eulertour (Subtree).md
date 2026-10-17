@@ -31,7 +31,7 @@ struct Eulertour_Subtree {
 - `Eulertour_Subtree et(G, root)` で $root$ を根にした木 $G$ に関してオイラーツアーテクニックをします。
 - `et.in[u]`で頂点 $u$ の左側（含める）を示します。
 - `et.out[u]`で頂点 $u$ の右側（含めない）を示します。
-  - 頂点 $u$ の範囲は $\lbrack \text{in}\lbrack u\rbrack, \text{out}\lbrack u\rbrack\rparen$ に対応します。
+  - 頂点 $u$ の部分木の範囲は $\lbrack \text{in}\lbrack u\rbrack, \text{out}\lbrack u\rbrack\rparen$ に対応します。
 - `et.tour`でオイラーツアーで求めた、訪れた順の頂点列を返します。
 
 ## 計算量
