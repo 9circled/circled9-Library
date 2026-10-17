@@ -10,7 +10,7 @@ $\left\lfloor \frac{A}{B}\right\rfloor$ を計算するやつ。
 // https://github.com/9circled/circled9-Library
 template<typename T>
 T Dfloor(T A, T B){
-	if (B<0) return floor(-A, -B);
+	if (B<0) return Dfloor(-A, -B);
 	if (A%B==0) return A/B;
 	if (A>=0) return (A/B);
 	else return -((-A)/B)-1;

@@ -10,7 +10,7 @@ $\left\lceil \frac{A}{B}\right\rceil$ を計算するやつ。
 // https://github.com/9circled/circled9-Library
 template<typename T>
 T Dceil(T A, T B){
-	if (B<0) return ceil(-A, -B);
+	if (B<0) return Dceil(-A, -B);
 	if (A%B==0) return A/B;
 	if (A>=0) return (A/B)+1;
 	else return -((-A)/B);
