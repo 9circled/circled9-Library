@@ -24,3 +24,4 @@ T Dceil(T A, T B){
 - 計算： $O(1)$
 
 ## 使用例
+- [ABC345 B - Integer Division Returns](https://atcoder.jp/contests/abc345/tasks/abc345_b) - [提出](https://atcoder.jp/contests/abc345/submissions/80171402)
