@@ -28,4 +28,4 @@ vector<pair<typename T::value_type, int>> RLE(const T& A){
 - 構築： $O(|S|)$ や $O(|A|)$
 
 ## 使用例
-- [ABC019 B - 高橋君と文字列圧縮](https://atcoder.jp/contests/abc019/tasks/abc019_2) - [提出](https://atcoder.jp/contests/abc019/submissions/80045884)
+- [ABC019 B - 高橋君と文字列圧縮](https://atcoder.jp/contests/abc019/tasks/abc019_2) - [提出](https://atcoder.jp/contests/abc019/submissions/80489549)
