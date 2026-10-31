@@ -9,7 +9,7 @@
 ```cpp
 // https://github.com/9circled/circled9-Library
 template <typename T>
-vector<pair<typename T::value_type, int>> RLE(T& A){
+vector<pair<typename T::value_type, int>> RLE(const T& A){
 	vector<pair<typename T::value_type, int>> ret;
 	for (auto c : A){
 		if (ret.size() && ret.back().first==c) ret.back().second++;
