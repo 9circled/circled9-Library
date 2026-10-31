@@ -52,7 +52,7 @@ struct SegmentSieve {
   - `sieve.primes` に $L\leq p\leq R$ を満たす素数 $p$ がまとめられています。
 
 ### 関数
-- `factorize(x)`： $x$ の素因数が昇順に連なった配列を返します。
+- `factorize(x)`： $x$ の素因数を昇順に並べた配列を返します。
 - `is_prime(x)`： $x$ が素数かどうかを返します。
 
 ## 計算量
