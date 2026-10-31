@@ -26,23 +26,23 @@ struct EratosSieve {
 		}
 	}
 
-	vector<pair<int, int>> factorize(int x){
-		vector<pair<int, int>> res;
+	vector<int> factorize(int x){
+		vector<int> res;
 		while (x>1){
-			int p = lpf[x], e = 0;
-			while (x%p==0){
-				x /= p;
-				e++;
-			}
-			res.emplace_back(p, e);
+			res.push_back(lpf[x]);
+			x /= lpf[x];
 		}
 		return res;
 	}
 
 	vector<int> divisors(int x){
 		vector<int> res({1});
-		auto pf = factorize(x);
-		for (auto [p, e] : pf){
+		while (x>1){
+			int p = lpf[x], e = 0;
+			while (x%p==0){
+				x /= p;
+				e++;
+			}
 			int s = res.size();
 			for (int i=0; i<s; i++){
 				int v = 1;
@@ -69,7 +69,7 @@ struct EratosSieve {
   - `es.kinds[i]` に $i$ の素因数の数があります。
 
 ### 関数
-- `factorize(x)`： $x$ を素因数分解して`(素数、指数)`の配列として返します。
+- `factorize(x)`： $x$ の素因数を昇順に並べた配列を返します。
 - `divisor(x)`： $x$ の約数を配列で返します。（昇順とは限らない）
 - `is_prime(x)`： $x$ が素数かどうかを返します。
 
