@@ -53,6 +53,7 @@ using comb = Combination;
   - ただし、大きい初期値を与えて計算させた方が実行時間は短くなります。
 
 ### 関数
+- `comb::extend(n)`： $n$ まで拡張します。
 - `comb::F(n)`： $n!$ を計算。
 - `comb::C(n, k)`： $_nC_k$ を計算。
 - `comb::P(n, k)`： $_nP_k$ を計算。
