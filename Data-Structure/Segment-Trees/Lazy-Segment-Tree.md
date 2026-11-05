@@ -8,9 +8,17 @@
 ### 本体
 ```cpp
 // https://github.com/9circled/circled9-Library
-template <typename T, auto op, auto e, typename F, auto act, auto comp, auto id>
+template <typename M>
 struct LazySegmentTree {
 private:
+	using T = typename M::T;
+	using F = typename M::F;
+	static T op(T a, T b){ return M::op(a, b); }
+	static T e(){ return M::e(); }
+	static T act(T x, F f, int w){ return M::act(x, f, w); }
+	static F comp(F f, F g){ return M::comp(f, g); }
+	static F id(){ return M::id(); }
+
 	int n, N = 1;
 	vector<T> tree;
 	vector<F> lazy;
@@ -111,11 +119,11 @@ public:
 		for (int i=N-1; i>0; i--) tree[i] = op(tree[2*i], tree[2*i+1]);
 	}
 
-	LazySegmentTree(vector<T>& A) : n(A.size()){
-		while (N<A.size()) N *= 2;
+	LazySegmentTree(const vector<T>& A) : n(A.size()){
+		while (N<n) N *= 2;
 		tree = vector<T>(2*N, e());
 		lazy = vector<F>(2*N, id());
-		for (int i=0; i<A.size(); i++) tree[i+N] = A[i];
+		for (int i=0; i<n; i++) tree[i+N] = A[i];
 		for (int i=N-1; i>0; i--) tree[i] = op(tree[2*i], tree[2*i+1]);
 	}
 
@@ -129,7 +137,7 @@ public:
 
 	template <typename C>
 	int max_right(int l, C check){
-		if (l==N) return n;
+		if (l==n) return n;
 		T sm = e();
 		return min(_max_right(l, check, sm, 1, 0, N), n);
 	}
@@ -141,19 +149,23 @@ public:
 		return _min_left(r, check, sm, 1, 0, N);
 	}
 };
-// using LT = 
-// using LF = 
-// LT op(LT l, LT r){ return; };
-// LT e(){ return; };
-// LT act(LT x, LF f, int w){ return; };
-// LF comp(LF f, LF g){ return; };
-// LF id(){ return; };
+
+struct Monoid {
+	using T = /* */;
+	using F = /* */;
+	static T op(T l, T r){ return /* */; }
+	static T e(){ return /* */; }
+	static T act(T x, F f, int w){ return /* */; }
+	static F comp(F f, F g){ return /* */; }
+	static F id(){ return /* */; }
+};
 ```
 
 ## 仕様・機能
-- `LazySegmentTree<LT, op, e, LF, act, comp, id>` で構築できます
+- `LazySegmentTree<モノイドの構造体名>` で構築できます
+  - コードそのままだと`LazySegmentTree<Monoid>`
 
-### パラメータについて
+### モノイドの構造体について
 - 要素の型 (`LT`)
 - 要素の演算 (`op`) ：要素を集約する時にどのような演算を行うのか
 - 要素の単位元 (`e`) ：演算を行っても値を変化させないような値
@@ -161,6 +173,20 @@ public:
 - 作用の適応 (`act`) ：要素を適応させるときにどのようなことを行うのか
 - 作用の合成 (`comp`) ：作用を合成した時にどのようになるのか
 - 作用の単位元 (`id`) ：合成しても変わらないような作用
+
+例：非負整数long long型区間加算区間最小値
+```cpp
+struct MIN {
+	using T = long long;
+	using F = long long;
+	static T op(T l, T r){ return min(l, r); }
+	static T e(){ return 1e18; }
+	static T act(T x, F f, int w){ return x+f; }
+	static F comp(F f, F g){ return f+g; }
+	static F id(){ return 0; }
+};
+// LazySegmentTree<MIN>
+```
 
 ### 関数
 以下は全て0-indexedです。
@@ -170,13 +196,14 @@ public:
 - `query(l, r)`：区間 $\lbrack l, r\rparen$ に対する演算結果を返す
 - `max_right(l, check)`： $l$ を左端として区間 $\lbrack l,x\rparen$ が条件 $check$ を満たす最大の $x$ を返す
   - $check$ はラムダ式で定義する
-  - `[&](int y){ return /*判定式*/; }` の形
-  - $y$ は区間の合成値を表す。
+  - `[&](int val){ return /*判定式*/; }` の形
+  - $val$ は区間の合成値を表す。
 - `min_left(r, check)`：$r$ を右端として区間 $\lbrack x, r\rparen$ が条件 $check$ を満たす最小の $x$ を返す
+  - $check$ は↑のと同じ
 
 ## 計算量
 - 構築： $O(N)$
 - `set`・`get`・`apply`・`query`・`max_right`・`min_left`： $O(\log{N})$ 
 
 ## 使用例
-- [AALC001 B - 遅延セグメント木](https://atcoder.jp/contests/aalc001/tasks/aalc001_b) - [提出](https://atcoder.jp/contests/aalc001/submissions/80047334)
+- [AALC001 B - 遅延セグメント木](https://atcoder.jp/contests/aalc001/tasks/aalc001_b) - [提出](https://atcoder.jp/contests/aalc001/submissions/80608099)
