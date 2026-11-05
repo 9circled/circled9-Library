@@ -8,9 +8,13 @@
 ### 本体
 ```cpp
 // https://github.com/9circled/circled9-Library
-template <typename T, auto op, auto e>
+template <typename M>
 struct SegmentTree {
 private:
+	using T = typename M::T;
+	static T op(T a, T b){ return M::op(a, b); }
+	static T e(){ return M::e(); }
+
 	int n, N = 1;
 	vector<T> tree;
 
@@ -112,18 +116,32 @@ public:
 		return _min_left(r, check, sm, 1, 0, N);
 	}
 };
-// using ST = 
-// ST op(ST l, ST r){ return; };
-// ST e(){ return; };
+
+struct Monoid {
+	using T = /* */;
+	static T op(T l, T r){ return /* */; }
+	static T e(){ return /* */; }
+};
 ```
 
 ## 仕様・機能
-- `SegmentTree<ST, op, e>` で構築できます
+- `SegmentTree<モノイドの構造体名>` で構築できます
+  - コードそのままだと`SegmentTree<Monoid>`
 
-### パラメータについて
+### モノイドの構造体について
 - 要素の型 (`ST`)
 - 演算 (`op`) ：要素を集約する時にどのような演算を行うのか
 - 単位元 (`e`) ：演算を行っても値を変化させないような値
+
+例：非負整数int型区間最大値
+```cpp
+struct MAX {
+	using T = int;
+	static T op(T l, T r){ return max(l, r); }
+	static T e(){ return 0; }
+};
+// SegmentTree<MAX>
+```
 
 ### 関数
 以下は全て0-indexedです。
@@ -133,9 +151,10 @@ public:
 - `query(l, r)`：区間 $\lbrack l, r\rparen$ に対する演算結果を返す
 - `max_right(l, check)`： $l$ を左端として区間 $\lbrack l,x\rparen$ が条件 $check$ を満たす最大の $x$ を返す
   - $check$ はラムダ式で定義する
-  - `[&](int y){ return /*判定式*/; }` の形
-  - $y$ は区間の合成値を表す。
+  - `[&](int val){ return /*判定式*/; }` の形
+  - $val$ は区間の合成値を表す。
 - `min_left(r, check)`：$r$ を右端として区間 $\lbrack x, r\rparen$ が条件 $check$ を満たす最小の $x$ を返す
+  - $check$ は↑のと同じ
 
 ## 計算量
 - 構築： $O(N)$
@@ -143,4 +162,4 @@ public:
 - `get`： $O(1)$
 
 ## 使用例
-- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80044589)
+- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80607536)
