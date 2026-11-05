@@ -88,9 +88,9 @@ public:
 	}
 
 	SegmentTree(const vector<T>& A) : n(A.size()){
-		while (N<A.size()) N *= 2;
+		while (N<n) N *= 2;
 		tree = vector<T>(2*N, e());
-		for (int i=0; i<A.size(); i++) tree[i+N] = A[i];
+		for (int i=0; i<n; i++) tree[i+N] = A[i];
 		for (int i=N-1; i>0; i--) tree[i] = op(tree[2*i], tree[2*i+1]);
 	}
 
@@ -162,4 +162,4 @@ struct MAX {
 - `get`： $O(1)$
 
 ## 使用例
-- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80607536)
+- [ALPC J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j) - [提出](https://atcoder.jp/contests/practice2/submissions/80608151)
